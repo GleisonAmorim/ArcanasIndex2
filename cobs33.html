@@ -6,73 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tarot Sorteio</title>
     <style>
+        html,
         body {
-            background-image: url('principal.jpg');
-            background-size: 100% calc(100vh + 2cm);
-            /* Aumenta a altura da imagem em 2 cm */
-            background-position: center top;
-            /* Alinha a imagem ao topo da tela */
-            background-attachment: fixed;
-            /* A imagem fica fixa ao rolar a página */
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        body {
+            background-image: url('principal.gif');
             background-repeat: no-repeat;
-            /* Evita que a imagem se repita */
-            font-family: Arial, sans-serif;
+            background-position: center center;
+            background-size: contain;
+            /* MOSTRA A IMAGEM INTEIRA */
+            background-color: black;
+            /* Mostra faixas pretas se necessário */
         }
-
-        /* Para dispositivos móveis */
-        @media (max-width: 768px) {
-            body {
-                background-image: url('principal.jpg');
-                background-size: cover;
-                /* Usa'cover'para garantir que a imagem preencha a tela sem distorção */
-                background-position: center;
-                /* Centraliza a imagem */
-
-            }
-        }
-
 
         .container {
             text-align: center;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 20px;
             color: white;
             height: 100vh;
-            /* Faz o container preencher toda a altura da tela */
             display: flex;
             flex-direction: column;
             justify-content: center;
-            /* Centraliza o conteúdo verticalmente */
             align-items: center;
-            /* Centraliza o conteúdo horizontalmente */
-            margin-top: 0;
-            /* Remove a margem superior */
-            transform: translate(1.6cm, -1cm);
-            /* posição do container não centralizado */
-
-        }
-
-        /* Ajustes para dispositivos móveis */
-        @media (max-width: 768px) {
-            .container {
-                margin-top: 0;
-                /* Garante que não haja margem superior */
-            }
+            margin-top: 5cm;
+            /* empurra para baixo */
+            transform: translate(0.8cm, 0);
+            /* só no eixo X */
         }
 
 
-
-        /* Para dispositivos móveis */
-        @media (max-width: 768px) {
-            .container {
-                height: 100vh;
-                /* Define a altura para 100% da altura da tela */
-                padding: 0;
-                /* Remove o padding para permitir que o contêiner ocupe toda a altura */
-                margin-top: 0;
-                /* Remove a margem superior */
-            }
-        }
 
         button {
             padding: 10px 20px;
@@ -92,11 +61,32 @@
         }
 
         .card-container {
-            position: relative;
-            width: 230px;
-            height: 330px;
-            margin: 20px auto;
+            position: absolute;
+            /* para poder mover pela tela */
+            top: 100px;
+            /* posição inicial */
+            left: 100px;
+            /* posição inicial */
+            width: 180px;
+            height: 320px;
+            margin: 0;
+            /* remova a margem para evitar conflito */
             perspective: 1000px;
+            cursor: grab;
+            /* cursor que indica que pode arrastar */
+        }
+
+        .card-container:active {
+            cursor: grabbing;
+            /* cursor durante o arrasto */
+        }
+
+        .card-back {
+            background-image: url('fd2.jpg');
+            background-size: cover;
+            background-position: right center;
+            /* Move a imagem para a direita */
+            transform: rotateY(180deg);
         }
 
         .card {
@@ -134,13 +124,6 @@
 
         }
 
-        .card-back {
-            background-image: url('fd1.jpg');
-            background-size: cover;
-            background-position: right center;
-            /* Move a imagem para a direita */
-            transform: rotateY(180deg);
-        }
 
         /* Botão transparente que cobre o container da carta */
         .button-overlay {
@@ -153,7 +136,69 @@
             border: none;
             cursor: pointer;
         }
+
+        #btnVirarCostas {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 999;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            padding: 1px 1px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 0 5px black;
+            transition: background-color 0.3s;
+        }
+
+        #btnVirarCostas:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        #btnVoltar {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 999;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 0 5px black;
+            transition: background-color 0.3s;
+        }
+
+        #btnVoltar:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
     </style>
+</head>
+
+<body>
+    <button id="btnVirarCostas" onclick="virarParaCostas()">🔄 Virar Costas</button><!--novo-->
+    <button id="btnVoltar" onclick="voltarParaIndex()">⬅️ Voltar</button><!--novo-->
+
+    <audio id="somSorteio" src="ms.mp3" preload="auto"></audio>
+    <div class="container">
+        <div class="card-container">
+            <div class="card" id="card">
+                <div class="card-face card-back"></div>
+                <div class="card-face card-front">
+                    <img id="card-image" src="" alt="Carta de Tarot"
+                        style="max-width: 100%; max-height: 100%; border-radius: 10px;">
+                </div>
+            </div>
+            <!-- Botão transparente que cobre a carta inteira -->
+            <button class="button-overlay" onclick="sortearCarta()"></button>
+        </div>
+    </div>
+
+    <script>
 </head>
 
 <body>
@@ -265,44 +310,87 @@
         ];
 
 
-        //Tempos de cada etapa
-        const tempoImagemAntiga = 500; //Tempo para manter a imagem antiga visível (meio segundo)
-        const tempoViradaCarta = 500; //Tempo de virada da carta (0.8 segundos)
-        const tempoEsperaNovaCarta = 500; //Tempo antes de exibir a nova carta (1 segundo)
-        const tempoGiro = 3000; //Tempo total de giro (2.5 segundos para girar várias vezes)
+        const tempoGiro = 1500;
 
-        function sortearCarta() {
-            //Tocar som
-            document.getElementById('somSorteio').play();
+        function sortearCarta(cartaEspecifica = null) {
+            const som = document.getElementById('somSorteio');
+            som.currentTime = 0;
+            som.play();
 
             const card = document.getElementById('card');
             const cardImage = document.getElementById('card-image');
 
-            //Sorteia uma nova carta
-            const indexAleatorio = Math.floor(Math.random() * cartas.length);
-            const carta = cartas[indexAleatorio];
+            // Gira a carta para as costas
+            card.classList.remove('is-flipped');
 
-            //Exibe a parte de trás da carta
-            cardImage.src = 'fd1.jpg';
+            // Sorteia a nova carta
+            const carta = cartaEspecifica || cartas[Math.floor(Math.random() * cartas.length)];
 
-            //Gira a carta várias vezes antes de revelar a nova carta
-            card.style.transition = 'none'; //Remover qualquer transição anterior
-            card.style.transform = 'rotateY(0deg)'; //Resetando a rotação
-
-            //Forçar um "reflow" para reiniciar a animação
-            void card.offsetWidth;
-
-            //Aplicar a animação de rotação
-            card.style.transition = `transform ${tempoGiro}ms ease-in-out`;
-            card.style.transform = 'rotateY(1800deg)'; //Girar 5 vezes (1800 graus)
-
-            //Espera o tempo do giro e depois revela a carta
+            // Espera a animação terminar (tempo de virar para costas)
             setTimeout(() => {
+                // Troca a imagem enquanto está de costas
+                cardImage.src = carta;
+
+                // Gira a carta para a frente (nova imagem)
                 card.classList.add('is-flipped');
-                cardImage.src = `${carta}`;
             }, tempoGiro);
         }
+
+
+        // Evento de teclado
+        document.addEventListener('keydown', function (event) {
+            const tecla = event.key.toLowerCase();
+            if (mapaTeclas[tecla]) {
+                sortearCarta(mapaTeclas[tecla]);
+            }
+        });
+        const cardContainer = document.querySelector('.card-container');
+
+        let isDragging = false;
+        let offsetX = 0;
+        let offsetY = 0;
+
+        cardContainer.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            // calcula a distância do clique para a borda superior/esquerda do container
+            offsetX = e.clientX - cardContainer.offsetLeft;
+            offsetY = e.clientY - cardContainer.offsetTop;
+            cardContainer.style.cursor = 'grabbing';
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            cardContainer.style.cursor = 'grab';
+        });
+        function virarParaCostas() {
+            const card = document.getElementById('card');
+            card.classList.remove('is-flipped');
+        }
+        function voltarParaIndex() {
+            window.location.href = "index.html";
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            // atualiza posição do container conforme o movimento do mouse
+            let left = e.clientX - offsetX;
+            let top = e.clientY - offsetY;
+
+            // opcional: impede que o container saia da tela
+            const maxLeft = window.innerWidth - cardContainer.offsetWidth;
+            const maxTop = window.innerHeight - cardContainer.offsetHeight;
+
+            if (left < 0) left = 0;
+            if (top < 0) top = 0;
+            if (left > maxLeft) left = maxLeft;
+            if (top > maxTop) top = maxTop;
+
+            cardContainer.style.left = left + 'px';
+            cardContainer.style.top = top + 'px';
+        });
+
     </script>
+
 </body>
 
 </html>
