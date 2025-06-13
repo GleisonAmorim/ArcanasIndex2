@@ -198,117 +198,60 @@
         </div>
     </div>
 
-    <script>
-</head>
-
-<body>
-    <audio id="somSorteio" src="ms.mp3" preload="auto"></audio>
-    <div class="container">
-        <div class="card-container">
-            <div class="card" id="card">
-                <div class="card-face card-back"></div>
-                <div class="card-face card-front">
-                    <img id="card-image" src="" alt="Carta de Tarot"
-                        style="max-width: 100%; max-height: 100%; border-radius: 10px;">
-                </div>
-            </div>
-            <!-- Botão transparente que cobre a carta inteira -->
-            <button class="button-overlay" onclick="sortearCarta()"></button>
-        </div>
-    </div>
-
-    <script>
+ <script>
         const cartas = [
-            'cobs33/0.jpeg',
-            'cobs33/1.jpeg',
-            'cobs33/10.jpeg',
-            'cobs33/11.jpeg',
-            'cobs33/12.jpeg',
-            'cobs33/13.jpeg',
-            'cobs33/14.jpeg',
-            'cobs33/15.jpeg',
-            'cobs33/16.jpeg',
-            'cobs33/17.jpeg',
-            'cobs33/18.jpeg',
-            'cobs33/19.jpeg',
-            'cobs33/2.jpeg',
-            'cobs33/20.jpeg',
-            'cobs33/21.jpeg',
-            'cobs33/22.jpeg',
-            'cobs33/23.jpeg',
-            'cobs33/24.jpeg',
-            'cobs33/25.jpeg',
-            'cobs33/26.jpeg',
-            'cobs33/27.jpeg',
-            'cobs33/28.jpeg',
-            'cobs33/29.jpeg',
-            'cobs33/3.jpeg',
-            'cobs33/30.jpeg',
-            'cobs33/31.jpeg',
-            'cobs33/32.jpeg',
-            'cobs33/33.jpeg',
-            'cobs33/34.jpeg',
-            'cobs33/35.jpeg',
-            'cobs33/36.jpeg',
-            'cobs33/37.jpeg',
-            'cobs33/38.jpeg',
-            'cobs33/39.jpeg',
-            'cobs33/4.jpeg',
-            'cobs33/40.jpeg',
-            'cobs33/41.jpeg',
-            'cobs33/42.jpeg',
-            'cobs33/43.jpeg',
-            'cobs33/44.jpeg',
-            'cobs33/45.jpeg',
-            'cobs33/46.jpeg',
-            'cobs33/47.jpeg',
-            'cobs33/48.jpeg',
-            'cobs33/49.jpeg',
-            'cobs33/5.jpeg',
-            'cobs33/50.jpeg',
-            'cobs33/51.jpeg',
-            'cobs33/52.jpeg',
-            'cobs33/53.jpeg',
-            'cobs33/54.jpeg',
-            'cobs33/55.jpeg',
-            'cobs33/56.jpeg',
-            'cobs33/57.jpeg',
-            'cobs33/58.jpeg',
-            'cobs33/59.jpeg',
-            'cobs33/6.jpeg',
-            'cobs33/60.jpeg',
-            'cobs33/61.jpeg',
-            'cobs33/62.jpeg',
-            'cobs33/63.jpeg',
-            'cobs33/64.jpeg',
-            'cobs33/65.jpeg',
-            'cobs33/66.jpeg',
-            'cobs33/67.jpeg',
-            'cobs33/68.jpeg',
-            'cobs33/69.jpeg',
-            'cobs33/7.jpeg',
-            'cobs33/70.jpeg',
-            'cobs33/71.jpeg',
-            'cobs33/72.jpeg',
-            'cobs33/73.jpeg',
-            'cobs33/74.jpeg',
-            'cobs33/75.jpeg',
-            'cobs33/76.jpeg',
-            'cobs33/77.jpeg',
-            'cobs33/78.jpeg',
-            'cobs33/79.jpeg',
-            'cobs33/8.jpeg',
-            'cobs33/80.jpeg',
-            'cobs33/81.jpeg',
-            'cobs33/82.jpeg',
-            'cobs33/83.jpeg',
-            'cobs33/84.jpeg',
-            'cobs33/85.jpeg',
-            'cobs33/9.jpeg'
-
+            'fornovo/0.jpeg',
+            'fornovo/1.jpeg',
+            'fornovo/2.jpeg',
+            'fornovo/3.jpeg',
+            'fornovo/4.jpeg',
+            'fornovo/5.jpeg',
+            'fornovo/6.jpeg',
+            'fornovo/7.jpeg',
+            'fornovo/8.jpeg',
+            'fornovo/9.jpeg',
+            'fornovo/q.jpeg',
+            'fornovo/w.jpeg',
+            'fornovo/e.jpeg',
+            'fornovo/r.jpeg',
+            'fornovo/t.jpeg',
+            'fornovo/y.jpeg',
+            'fornovo/u.jpeg',
+            'fornovo/i.jpeg',
+            'fornovo/o.jpeg',
+            'fornovo/p.jpeg',
+            'fornovo/a.jpeg',
+            'fornovo/s.jpeg'
 
         ];
 
+        // Mapeamento de teclas para cartas específicas
+        const mapaTeclas = {
+            '0': 'fornovo/0.jpeg',
+            '1': 'fornovo/1.jpeg',
+            '2': 'fornovo/2.jpeg',
+            '3': 'fornovo/3.jpeg',
+            '4': 'fornovo/4.jpeg',
+            '5': 'fornovo/5.jpeg',
+            '6': 'fornovo/6.jpeg',
+            '7': 'fornovo/7.jpeg',
+            '8': 'fornovo/8.jpeg',
+            '9': 'fornovo/9.jpeg',
+            'q': 'fornovo/q.jpeg',
+            'w': 'fornovo/w.jpeg',
+            'e': 'fornovo/e.jpeg',
+            'r': 'fornovo/r.jpeg',
+            't': 'fornovo/t.jpeg',
+            'y': 'fornovo/y.jpeg',
+            'u': 'fornovo/u.jpeg',
+            'i': 'fornovo/i.jpeg',
+            'o': 'fornovo/o.jpeg',
+            'p': 'fornovo/p.jpeg',
+            'a': 'fornovo/a.jpeg',
+            's': 'fornovo/s.jpeg',
+
+
+        };
 
         const tempoGiro = 1500;
 
