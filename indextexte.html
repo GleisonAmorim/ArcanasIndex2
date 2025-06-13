@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Jogo de Tarot - Escolha</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0d0d0d, #1a1a2e);
+            color: #fff;
+            font-family: 'Segoe UI', sans-serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            color: #00ffd5;
+        }
+
+        select {
+            padding: 15px;
+            font-size: 18px;
+            border-radius: 10px;
+            border: none;
+            background-color: #282c34;
+            color: #fff;
+            width: 320px;
+            box-shadow: 0 0 15px rgba(0, 255, 213, 0.3);
+        }
+
+        select:focus {
+            outline: none;
+            box-shadow: 0 0 20px #00ffd5;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            font-size: 13px;
+            color: #888;
+        }
+    </style>
+
+
+    <script>
+        function abrirJogo(select) {
+            const jogo = select.value;
+            if (jogo) {
+                window.location.href = jogo;
+            }
+        }
+    </script>
+
+    <div class="footer">© 2025 Gleison Amorim - Tarot Arcanas</div>
+</body>
+
+</html>

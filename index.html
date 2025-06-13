@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Jogo de Tarot - Escolha</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        /* Fundo com gradiente e fonte moderna */
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0d0d0d, #1a1a2e);
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        /* Título */
+        h1 {
+            margin-bottom: 30px;
+            color: #00ffd5;
+            font-weight: 700;
+            font-size: 2.5rem;
+            text-shadow: 0 0 10px #00ffd5;
+        }
+
+        /* Select estilizado */
+        select {
+            padding: 15px;
+            font-size: 18px;
+            border-radius: 10px;
+            border: none;
+            background-color: #282c34;
+            color: #fff;
+            width: 320px;
+            box-shadow: 0 0 15px rgba(0, 255, 213, 0.4);
+            cursor: pointer;
+            transition: box-shadow 0.3s ease;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            text-align-last: center;
+            /* centraliza o texto da opção selecionada */
+        }
+
+        select:focus {
+            outline: none;
+            box-shadow: 0 0 20px #00ffd5;
+        }
+
+        /* Opções do select */
+        option {
+            background-color: #282c34;
+            color: #fff;
+        }
+
+        /* Rodapé fixo no final */
+        .footer {
+            position: fixed;
+            bottom: 20px;
+            font-size: 13px;
+            color: #888;
+            user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Escolha o Jogo</h1>
+
+    <select onchange="abrirJogo(this)">
+        <option value="">-- Selecione um jogo --</option>
+        <option value="gs.html">Gs</option>
+        <option value="hogwar.html">Hogw</option>
+        <option value="infinity.html">IN</option>
+        <option value="dogma.html">Dogma</option>
+        <option value="for.html">Ffor</option>
+        <option value="wuwa.html">Wuwa</option>
+        <option value="bg3.html">Bg3</option>
+        <option value="avowed.html">Avow</option>
+        <option value="cobs33.html">Cobs 33</option>
+        <option value="dragon.html">Dragon</option>
+        <option value="exp.html">Exp</option>
+        <option value="ghost.html">Ghost</option>
+        <option value="mtg.html">Magic: The Gathering</option>
+        <option value="night.html">Night</option>
+        <option value="sky.html">Sky</option>
+    </select>
+
+    <div class="footer">© 2025 Gleison Amorim - Tarot Arcanas</div>
+
+    <script>
+        function abrirJogo(select) {
+            const jogo = select.value;
+            if (jogo) {
+                window.location.href = jogo;
+            }
+        }
+    </script>
+
+</body>
+
+</html>
