@@ -136,10 +136,53 @@
             border: none;
             cursor: pointer;
         }
+
+        #btnVirarCostas {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 999;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            padding: 1px 1px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 0 5px black;
+            transition: background-color 0.3s;
+        }
+
+        #btnVirarCostas:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        #btnVoltar {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 999;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 0 5px black;
+            transition: background-color 0.3s;
+        }
+
+        #btnVoltar:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
     </style>
 </head>
 
 <body>
+    <button id="btnVirarCostas" onclick="virarParaCostas()">🔄 Virar Costas</button><!--novo-->
+    <button id="btnVoltar" onclick="voltarParaIndex()">⬅️ Voltar</button><!--novo-->
+
     <audio id="somSorteio" src="ms.mp3" preload="auto"></audio>
     <div class="container">
         <div class="card-container">
@@ -262,6 +305,13 @@
             isDragging = false;
             cardContainer.style.cursor = 'grab';
         });
+        function virarParaCostas() {
+            const card = document.getElementById('card');
+            card.classList.remove('is-flipped');
+        }
+        function voltarParaIndex() {
+            window.location.href = "index.html";
+        }
 
         document.addEventListener('mousemove', (e) => {
             if (!isDragging) return;
