@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -136,10 +137,53 @@
             border: none;
             cursor: pointer;
         }
+
+        #btnVirarCostas {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 999;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            padding: 1px 1px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 0 5px black;
+            transition: background-color 0.3s;
+        }
+
+        #btnVirarCostas:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        #btnVoltar {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 999;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 0 5px black;
+            transition: background-color 0.3s;
+        }
+
+        #btnVoltar:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
     </style>
 </head>
 
 <body>
+    <button id="btnVirarCostas" onclick="virarParaCostas()">🔄 Virar Costas</button><!--novo-->
+    <button id="btnVoltar" onclick="voltarParaIndex()">⬅️ Voltar</button><!--novo-->
+
     <audio id="somSorteio" src="ms.mp3" preload="auto"></audio>
     <div class="container">
         <div class="card-container">
@@ -157,60 +201,60 @@
 
     <script>
         const cartas = [
-            '1infin/0.jpeg',
-            '1infin/1.jpeg',
-            '1infin/2.jpeg',
-            '1infin/3.jpeg',
-            '1infin/4.jpeg',
-            '1infin/5.jpeg',
-            '1infin/6.jpeg',
-            '1infin/7.jpeg',
-            '1infin/8.jpeg',
-            '1infin/9.jpeg',
-            '1infin/q.jpeg',
-            '1infin/w.jpeg',
-            '1infin/e.jpeg',
-            '1infin/r.jpeg',
-            '1infin/t.jpeg',
-            '1infin/y.jpeg',
-            '1infin/u.jpeg',
-            '1infin/i.jpeg',
-            '1infin/o.jpeg',
-            '1infin/p.jpeg',
-            '1infin/a.jpeg',
-            '1infin/s.jpeg'
+            '1hogwa/0.jpeg',
+            '1hogwa/1.jpeg',
+            '1hogwa/2.jpeg',
+            '1hogwa/3.jpeg',
+            '1hogwa/4.jpeg',
+            '1hogwa/5.jpeg',
+            '1hogwa/6.jpeg',
+            '1hogwa/7.jpeg',
+            '1hogwa/8.jpeg',
+            '1hogwa/9.jpeg',
+            '1hogwa/q.jpeg',
+            '1hogwa/w.jpeg',
+            '1hogwa/e.jpeg',
+            '1hogwa/r.jpeg',
+            '1hogwa/t.jpeg',
+            '1hogwa/y.jpeg',
+            '1hogwa/u.jpeg',
+            '1hogwa/i.jpeg',
+            '1hogwa/o.jpeg',
+            '1hogwa/p.jpeg',
+            '1hogwa/a.jpeg',
+            '1hogwa/s.jpeg'
 
         ];
 
         // Mapeamento de teclas para cartas específicas
         const mapaTeclas = {
-            '0': '1infin/0.jpeg',
-            '1': '1infin/1.jpeg',
-            '2': '1infin/2.jpeg',
-            '3': '1infin/3.jpeg',
-            '4': '1infin/4.jpeg',
-            '5': '1infin/5.jpeg',
-            '6': '1infin/6.jpeg',
-            '7': '1infin/7.jpeg',
-            '8': '1infin/8.jpeg',
-            '9': '1infin/9.jpeg',
-            'q': '1infin/q.jpeg',
-            'w': '1infin/w.jpeg',
-            'e': '1infin/e.jpeg',
-            'r': '1infin/r.jpeg',
-            't': '1infin/t.jpeg',
-            'y': '1infin/y.jpeg',
-            'u': '1infin/u.jpeg',
-            'i': '1infin/i.jpeg',
-            'o': '1infin/o.jpeg',
-            'p': '1infin/p.jpeg',
-            'a': '1infin/a.jpeg',
-            's': '1infin/s.jpeg',
+            '0': '1hogwa/0.jpeg',
+            '1': '1hogwa/1.jpeg',
+            '2': '1hogwa/2.jpeg',
+            '3': '1hogwa/3.jpeg',
+            '4': '1hogwa/4.jpeg',
+            '5': '1hogwa/5.jpeg',
+            '6': '1hogwa/6.jpeg',
+            '7': '1hogwa/7.jpeg',
+            '8': '1hogwa/8.jpeg',
+            '9': '1hogwa/9.jpeg',
+            'q': '1hogwa/q.jpeg',
+            'w': '1hogwa/w.jpeg',
+            'e': '1hogwa/e.jpeg',
+            'r': '1hogwa/r.jpeg',
+            't': '1hogwa/t.jpeg',
+            'y': '1hogwa/y.jpeg',
+            'u': '1hogwa/u.jpeg',
+            'i': '1hogwa/i.jpeg',
+            'o': '1hogwa/o.jpeg',
+            'p': '1hogwa/p.jpeg',
+            'a': '1hogwa/a.jpeg',
+            's': '1hogwa/s.jpeg',
 
 
         };
 
-        const tempoGiro = 1500;
+          const tempoGiro = 1500;
 
         function sortearCarta(cartaEspecifica = null) {
             const som = document.getElementById('somSorteio');
@@ -262,6 +306,13 @@
             isDragging = false;
             cardContainer.style.cursor = 'grab';
         });
+        function virarParaCostas() {
+            const card = document.getElementById('card');
+            card.classList.remove('is-flipped');
+        }
+        function voltarParaIndex() {
+            window.location.href = "index.html";
+        }
 
         document.addEventListener('mousemove', (e) => {
             if (!isDragging) return;
