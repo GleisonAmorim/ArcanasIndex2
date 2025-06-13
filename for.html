@@ -136,10 +136,53 @@
             border: none;
             cursor: pointer;
         }
+
+        #btnVirarCostas {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 999;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            padding: 1px 1px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 0 5px black;
+            transition: background-color 0.3s;
+        }
+
+        #btnVirarCostas:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        #btnVoltar {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 999;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 0 5px black;
+            transition: background-color 0.3s;
+        }
+
+        #btnVoltar:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
     </style>
 </head>
 
 <body>
+    <button id="btnVirarCostas" onclick="virarParaCostas()">🔄 Virar Costas</button><!--novo-->
+    <button id="btnVoltar" onclick="voltarParaIndex()">⬅️ Voltar</button><!--novo-->
+
     <audio id="somSorteio" src="ms.mp3" preload="auto"></audio>
     <div class="container">
         <div class="card-container">
@@ -157,60 +200,60 @@
 
     <script>
         const cartas = [
-            'fornovo/0.jpeg',
-            'fornovo/1.jpeg',
-            'fornovo/2.jpeg',
-            'fornovo/3.jpeg',
-            'fornovo/4.jpeg',
-            'fornovo/5.jpeg',
-            'fornovo/6.jpeg',
-            'fornovo/7.jpeg',
-            'fornovo/8.jpeg',
-            'fornovo/9.jpeg',
-            'fornovo/q.jpeg',
-            'fornovo/w.jpeg',
-            'fornovo/e.jpeg',
-            'fornovo/r.jpeg',
-            'fornovo/t.jpeg',
-            'fornovo/y.jpeg',
-            'fornovo/u.jpeg',
-            'fornovo/i.jpeg',
-            'fornovo/o.jpeg',
-            'fornovo/p.jpeg',
-            'fornovo/a.jpeg',
-            'fornovo/s.jpeg'
+            '2fornovo/0.jpeg',
+            '2fornovo/1.jpeg',
+            '2fornovo/2.jpeg',
+            '2fornovo/3.jpeg',
+            '2fornovo/4.jpeg',
+            '2fornovo/5.jpeg',
+            '2fornovo/6.jpeg',
+            '2fornovo/7.jpeg',
+            '2fornovo/8.jpeg',
+            '2fornovo/9.jpeg',
+            '2fornovo/q.jpeg',
+            '2fornovo/w.jpeg',
+            '2fornovo/e.jpeg',
+            '2fornovo/r.jpeg',
+            '2fornovo/t.jpeg',
+            '2fornovo/y.jpeg',
+            '2fornovo/u.jpeg',
+            '2fornovo/i.jpeg',
+            '2fornovo/o.jpeg',
+            '2fornovo/p.jpeg',
+            '2fornovo/a.jpeg',
+            '2fornovo/s.jpeg'
 
         ];
 
         // Mapeamento de teclas para cartas específicas
         const mapaTeclas = {
-            '0': 'fornovo/0.jpeg',
-            '1': 'fornovo/1.jpeg',
-            '2': 'fornovo/2.jpeg',
-            '3': 'fornovo/3.jpeg',
-            '4': 'fornovo/4.jpeg',
-            '5': 'fornovo/5.jpeg',
-            '6': 'fornovo/6.jpeg',
-            '7': 'fornovo/7.jpeg',
-            '8': 'fornovo/8.jpeg',
-            '9': 'fornovo/9.jpeg',
-            'q': 'fornovo/q.jpeg',
-            'w': 'fornovo/w.jpeg',
-            'e': 'fornovo/e.jpeg',
-            'r': 'fornovo/r.jpeg',
-            't': 'fornovo/t.jpeg',
-            'y': 'fornovo/y.jpeg',
-            'u': 'fornovo/u.jpeg',
-            'i': 'fornovo/i.jpeg',
-            'o': 'fornovo/o.jpeg',
-            'p': 'fornovo/p.jpeg',
-            'a': 'fornovo/a.jpeg',
-            's': 'fornovo/s.jpeg',
+            '0': '2fornovo/0.jpeg',
+            '1': '2fornovo/1.jpeg',
+            '2': '2fornovo/2.jpeg',
+            '3': '2fornovo/3.jpeg',
+            '4': '2fornovo/4.jpeg',
+            '5': '2fornovo/5.jpeg',
+            '6': '2fornovo/6.jpeg',
+            '7': '2fornovo/7.jpeg',
+            '8': '2fornovo/8.jpeg',
+            '9': '2fornovo/9.jpeg',
+            'q': '2fornovo/q.jpeg',
+            'w': '2fornovo/w.jpeg',
+            'e': '2fornovo/e.jpeg',
+            'r': '2fornovo/r.jpeg',
+            't': '2fornovo/t.jpeg',
+            'y': '2fornovo/y.jpeg',
+            'u': '2fornovo/u.jpeg',
+            'i': '2fornovo/i.jpeg',
+            'o': '2fornovo/o.jpeg',
+            'p': '2fornovo/p.jpeg',
+            'a': '2fornovo/a.jpeg',
+            's': '2fornovo/s.jpeg',
 
 
         };
 
-        const tempoGiro = 1500;
+          const tempoGiro = 1500;
 
         function sortearCarta(cartaEspecifica = null) {
             const som = document.getElementById('somSorteio');
@@ -262,6 +305,13 @@
             isDragging = false;
             cardContainer.style.cursor = 'grab';
         });
+        function virarParaCostas() {
+            const card = document.getElementById('card');
+            card.classList.remove('is-flipped');
+        }
+        function voltarParaIndex() {
+            window.location.href = "index.html";
+        }
 
         document.addEventListener('mousemove', (e) => {
             if (!isDragging) return;
