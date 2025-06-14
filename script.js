@@ -15,7 +15,7 @@ function carregarCartas() {
     cartas = [];
     mapaTeclas = {};
 
-    const nomesArquivos = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd'];
+    const nomesArquivos = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's'];
 
     nomesArquivos.forEach(nome => {
         cartas.push(`${jogo}/${nome}.jpeg`);
