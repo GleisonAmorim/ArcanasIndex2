@@ -1,5 +1,4 @@
 const tempoGiro = 1500; // Tempo da animação de virar a carta (ms)
-
 function sortearCarta(cartaEspecifica = null) {
     const som = document.getElementById('somSorteio');
     som.currentTime = 0;
@@ -8,28 +7,30 @@ function sortearCarta(cartaEspecifica = null) {
     const card = document.getElementById('card');
     const cardImage = document.getElementById('card-image');
 
-    // Gira a carta para trás (costas)
+    // Gira a carta para as costas
     card.classList.remove('is-flipped');
 
-    // Sorteia ou recebe carta específica
+    // Sorteia a nova carta
     const carta = cartaEspecifica || cartas[Math.floor(Math.random() * cartas.length)];
 
-    // Após animação da carta girando para trás, troca imagem e gira para frente
+    // Espera a animação terminar (tempo de virar para costas)
     setTimeout(() => {
+        // Troca a imagem enquanto está de costas
         cardImage.src = carta;
+
+        // Gira a carta para a frente (nova imagem)
         card.classList.add('is-flipped');
     }, tempoGiro);
 }
 
-// Permite escolher carta via teclado
+
+// Evento de teclado
 document.addEventListener('keydown', function (event) {
     const tecla = event.key.toLowerCase();
     if (mapaTeclas[tecla]) {
         sortearCarta(mapaTeclas[tecla]);
     }
 });
-
-// Arrastar o container da carta pela tela
 const cardContainer = document.querySelector('.card-container');
 
 let isDragging = false;
@@ -38,6 +39,7 @@ let offsetY = 0;
 
 cardContainer.addEventListener('mousedown', (e) => {
     isDragging = true;
+    // calcula a distância do clique para a borda superior/esquerda do container
     offsetX = e.clientX - cardContainer.offsetLeft;
     offsetY = e.clientY - cardContainer.offsetTop;
     cardContainer.style.cursor = 'grabbing';
@@ -47,14 +49,21 @@ document.addEventListener('mouseup', () => {
     isDragging = false;
     cardContainer.style.cursor = 'grab';
 });
+function virarParaCostas() {
+    const card = document.getElementById('card');
+    card.classList.remove('is-flipped');
+}
+function voltarParaIndex() {
+    window.location.href = "index.html";
+}
 
 document.addEventListener('mousemove', (e) => {
     if (!isDragging) return;
-
+    // atualiza posição do container conforme o movimento do mouse
     let left = e.clientX - offsetX;
     let top = e.clientY - offsetY;
 
-    // Evita que o container saia da tela
+    // opcional: impede que o container saia da tela
     const maxLeft = window.innerWidth - cardContainer.offsetWidth;
     const maxTop = window.innerHeight - cardContainer.offsetHeight;
 
@@ -66,7 +75,6 @@ document.addEventListener('mousemove', (e) => {
     cardContainer.style.left = left + 'px';
     cardContainer.style.top = top + 'px';
 });
-
 // Atalho ALT + B para abrir a carta atual em popup destacada
 document.addEventListener('keydown', function (event) {
     if (event.altKey && event.key.toLowerCase() === 'b') {
