@@ -11,11 +11,10 @@
 <body>
 
     <button id="btnVirarCostas" onclick="virarParaCostas()">🔄 Virar Costas</button>
-    <button id="btnVoltar" onclick="voltarParaIndex()">⬅️ Voltar</button>
 
     <!-- Lista suspensa para selecionar o jogo -->
     <select id="seletorJogo" onchange="carregarCartas()">
-        <option value="">-- Selecione o Jogo --</option>
+        <option value="Jogo">Select</option>
         <option value="1avowed">Avowed</option>
         <option value="2bg3n">Baldur's Gate 3</option>
         <option value="1dogma">Dragon's Dogma 2</option>
@@ -47,62 +46,19 @@
             <button class="button-overlay" onclick="sortearCarta()"></button>
         </div>
     </div>
-
-    <script>
-        let cartas = [];
-        let mapaTeclas = {};
-        let pastaSelecionada = "";
-
-        function carregarCartas() {
-            const jogo = document.getElementById('seletorJogo').value;
-            pastaSelecionada = jogo;
-
-            if (jogo === "") {
-                cartas = [];
-                mapaTeclas = {};
-                return;
-            }
-
-            cartas = [];
-            mapaTeclas = {};
-
-            const nomesArquivos = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd'];
-
-            nomesArquivos.forEach(nome => {
-                cartas.push(`${jogo}/${nome}.jpeg`);
-                mapaTeclas[nome] = `${jogo}/${nome}.jpeg`;
-            });
-
-            console.log("Cartas carregadas:", cartas);
-        }
-
-        function sortearCarta() {
-            if (cartas.length === 0) {
-                alert("Por favor, selecione um jogo antes!");
-                return;
-            }
-
-            const sorteada = cartas[Math.floor(Math.random() * cartas.length)];
-            document.getElementById('card-image').src = sorteada;
-            document.getElementById('somSorteio').play();
-        }
-
-        document.addEventListener('keydown', function (event) {
-            const tecla = event.key.toLowerCase();
-            if (mapaTeclas[tecla]) {
-                document.getElementById('card-image').src = mapaTeclas[tecla];
-                document.getElementById('somSorteio').play();
-            }
-        });
-
-        function virarParaCostas() {
-            document.getElementById('card-image').src = "";
-        }
-
-        function voltarParaIndex() {
-            window.location.href = "index.html";
-        }
-    </script>
+    <div id="infoCarta" style="
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    color: white;
+    font-size: 14px;
+    background-color: rgba(0,0,0,0.6);
+    padding: 8px 12px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px black;
+    max-width: 250px;
+    word-wrap: break-word;
+"></div>
     <script src="script.js"></script>
 </body>
 
