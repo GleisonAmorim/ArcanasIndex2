@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarot Sorteio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <button id="btnVirarCostas" onclick="virarParaCostas()">🔄 Virar Costas</button>
+    <button id="btnVoltar" onclick="voltarParaIndex()">⬅️ Voltar</button>
+
+    <!-- Lista suspensa para selecionar o jogo -->
+    <select id="seletorJogo" onchange="carregarCartas()">
+        <option value="">-- Selecione o Jogo --</option>
+        <option value="1avowed">Avowed</option>
+        <option value="2bg3n">Baldur's Gate 3</option>
+        <option value="1dogma">Dragon's Dogma 2</option>
+        <option value="1exp">Expedition 33</option>
+        <option value="2fornovo">Forspoken</option>
+        <option value="1ghost">Ghostwire Tokyo</option>
+        <option value="Gs">Genshin Impact</option>
+        <option value="1hogwa">Hogwarts Legacy</option>
+        <option value="1infin">Infinity Nikki</option>
+        <option value="1mtg">Magic: The Gathering</option>
+        <option value="1night">Nightingale</option>
+        <option value="1sky">Skyblivion</option>
+        <option value="wuwa">Wuthering Waves</option>
+
+
+    </select>
+
+    <audio id="somSorteio" src="ms.mp3" preload="auto"></audio>
+
+    <div class="container">
+        <div class="card-container">
+            <div class="card" id="card">
+                <div class="card-face card-back"></div>
+                <div class="card-face card-front">
+                    <img id="card-image" src="" alt="Carta de Tarot"
+                        style="max-width: 100%; max-height: 100%; border-radius: 10px;">
+                </div>
+            </div>
+            <button class="button-overlay" onclick="sortearCarta()"></button>
+        </div>
+    </div>
+
+    <script>
+        let cartas = [];
+        let mapaTeclas = {};
+        let pastaSelecionada = "";
+
+        function carregarCartas() {
+            const jogo = document.getElementById('seletorJogo').value;
+            pastaSelecionada = jogo;
+
+            if (jogo === "") {
+                cartas = [];
+                mapaTeclas = {};
+                return;
+            }
+
+            cartas = [];
+            mapaTeclas = {};
+
+            const nomesArquivos = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd'];
+
+            nomesArquivos.forEach(nome => {
+                cartas.push(`${jogo}/${nome}.jpeg`);
+                mapaTeclas[nome] = `${jogo}/${nome}.jpeg`;
+            });
+
+            console.log("Cartas carregadas:", cartas);
+        }
+
+        function sortearCarta() {
+            if (cartas.length === 0) {
+                alert("Por favor, selecione um jogo antes!");
+                return;
+            }
+
+            const sorteada = cartas[Math.floor(Math.random() * cartas.length)];
+            document.getElementById('card-image').src = sorteada;
+            document.getElementById('somSorteio').play();
+        }
+
+        document.addEventListener('keydown', function (event) {
+            const tecla = event.key.toLowerCase();
+            if (mapaTeclas[tecla]) {
+                document.getElementById('card-image').src = mapaTeclas[tecla];
+                document.getElementById('somSorteio').play();
+            }
+        });
+
+        function virarParaCostas() {
+            document.getElementById('card-image').src = "";
+        }
+
+        function voltarParaIndex() {
+            window.location.href = "index.html";
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
