@@ -88,7 +88,7 @@ document.addEventListener('keydown', function (event) {
     const jogoSelecionado = seletor.value;
 
     if ((jogoSelecionado === "" || jogoSelecionado === "Jogo" || jogoSelecionado === "Select") && mapaTeclas[tecla]) {
-        alert("Por favor, selecione um jogo antes de sortear uma carta!");
+        alert("Select a Game");
         return;
     }
 
