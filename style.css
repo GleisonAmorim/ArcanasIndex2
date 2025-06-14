@@ -86,7 +86,7 @@
             height: 100%;
             position: absolute;
             transform-style: preserve-3d;
-            transition: transform 1.0s ease-in-out;
+            transition: transform 1.5s ease-in-out;
             /* Animação mais suave */
             transform: rotateY(180deg);
         }
@@ -168,4 +168,31 @@
 
         #btnVoltar:hover {
             background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        #seletorJogo {
+            position: fixed;
+            top: 10%;
+            right: 20px;
+            transform: translateY(-50%);
+            padding: 5px 10px;
+            font-size: 9px;
+            width: 100px;
+            border-radius: 8px;
+            border: 2px solid #4b24e9;
+            background: linear-gradient(to right, #aa10a05e, #7f00b1);
+            color: white;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            appearance: none;
+            /* Tira o estilo padrão (em alguns browsers) */
+        }
+
+        #seletorJogo option {
+            background-color: black;
+            /* Cor de fundo das opções (funciona só no Firefox) */
+            color: white;
+            border-radius: 8px;
+            /* Poucos navegadores respeitam */
         }
