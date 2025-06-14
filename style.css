@@ -196,3 +196,17 @@
             border-radius: 8px;
             /* Poucos navegadores respeitam */
         }
+
+        #infoCarta {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            color: white;
+            font-size: 14px;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 8px 12px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px black;
+            max-width: 250px;
+            word-wrap: break-word;
+        }
